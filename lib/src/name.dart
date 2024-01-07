@@ -16,7 +16,7 @@ enum NameValidationError {
 }
 
 /// {@template name}
-/// Form input for an name input.
+/// Form input for name input.
 /// {@endtemplate}
 class Name extends FormzInput<String, NameValidationError> {
   /// {@macro name}
