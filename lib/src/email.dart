@@ -2,8 +2,16 @@ import 'package:formz/formz.dart';
 
 /// Validation errors for the [Email] [FormzInput].
 enum EmailValidationError {
+  /// Generic empty error.
+  empty('Email is required'),
+
   /// Generic invalid error.
-  invalid
+  invalid('Invalid email');
+
+  const EmailValidationError(this.msg);
+
+  /// Error message to be displayed.
+  final String msg;
 }
 
 /// {@template email}
@@ -22,8 +30,13 @@ class Email extends FormzInput<String, EmailValidationError> {
 
   @override
   EmailValidationError? validator(String? value) {
-    return _emailRegExp.hasMatch(value ?? '')
-        ? null
-        : EmailValidationError.invalid;
+    final email = value ?? '';
+    if (email.isEmpty) {
+      return EmailValidationError.empty;
+    }
+    if (!_emailRegExp.hasMatch(email)) {
+      return EmailValidationError.invalid;
+    }
+    return null;
   }
 }
