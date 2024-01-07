@@ -2,8 +2,16 @@ import 'package:formz/formz.dart';
 
 /// Validation errors for the [ConfirmedPassword] [FormzInput].
 enum ConfirmedPasswordValidationError {
+  /// Generic empty error.
+  empty('Please enter the password again'),
+
   /// Generic invalid error.
-  invalid
+  passwordsDoNotMatch('Passwords do not match');
+
+  const ConfirmedPasswordValidationError(this.msg);
+
+  /// Error message to be displayed.
+  final String msg;
 }
 
 /// {@template confirmed_password}
@@ -23,6 +31,13 @@ class ConfirmedPassword
 
   @override
   ConfirmedPasswordValidationError? validator(String? value) {
-    return password == value ? null : ConfirmedPasswordValidationError.invalid;
+    final confirmationPassword = value ?? '';
+    if (confirmationPassword.isEmpty) {
+      return ConfirmedPasswordValidationError.empty;
+    }
+    if (password != confirmationPassword) {
+      return ConfirmedPasswordValidationError.passwordsDoNotMatch;
+    }
+    return null;
   }
 }
