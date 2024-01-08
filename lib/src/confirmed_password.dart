@@ -3,7 +3,7 @@ import 'package:formz/formz.dart';
 /// Validation errors for the [ConfirmedPassword] [FormzInput].
 enum ConfirmedPasswordValidationError {
   /// Generic empty error.
-  empty('Please enter the password again'),
+  empty('Please re-enter your password for confirmation'),
 
   /// Generic invalid error.
   passwordsDoNotMatch('Passwords do not match');
