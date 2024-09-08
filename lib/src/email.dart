@@ -17,12 +17,12 @@ enum EmailValidationError {
 /// {@template email}
 /// Form input for an email input.
 /// {@endtemplate}
-class EmailFZ extends FormzInput<String, EmailValidationError> {
+class Email extends FormzInput<String, EmailValidationError> {
   /// {@macro email}
-  const EmailFZ.pure() : super.pure('');
+  const Email.pure() : super.pure('');
 
   /// {@macro email}
-  const EmailFZ.dirty(super.value) : super.dirty();
+  const Email.dirty(super.value) : super.dirty();
 
   static final RegExp _emailRegExp = RegExp(
     r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+",

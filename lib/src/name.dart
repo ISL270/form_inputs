@@ -12,12 +12,12 @@ enum NameValidationError {
 }
 
 // Extend FormzInput and provide the input type and error type.
-class NameFZ extends FormzInput<String, NameValidationError> {
+class Name extends FormzInput<String, NameValidationError> {
   // Call super.pure to represent an unmodified form input.
-  const NameFZ.pure() : super.pure('');
+  const Name.pure() : super.pure('');
 
   // Call super.dirty to represent a modified form input.
-  const NameFZ.dirty(super.value) : super.dirty();
+  const Name.dirty(super.value) : super.dirty();
 
   static final RegExp _nameRegExp = RegExp('[A-Za-zء-ي ]');
 
