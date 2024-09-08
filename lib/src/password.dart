@@ -19,12 +19,12 @@ enum PasswordValidationError {
 /// {@template password}
 /// Form input for an password input.
 /// {@endtemplate}
-class Password extends FormzInput<String, PasswordValidationError> {
+class PasswordFZ extends FormzInput<String, PasswordValidationError> {
   /// {@macro password}
-  const Password.pure([super.value = '']) : super.pure();
+  const PasswordFZ.pure() : super.pure('');
 
   /// {@macro password}
-  const Password.dirty([super.value = '']) : super.dirty();
+  const PasswordFZ.dirty(super.value) : super.dirty();
 
   static final _passwordRegExp = RegExp(r'^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$');
 

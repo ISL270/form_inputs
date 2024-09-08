@@ -17,14 +17,14 @@ enum ConfirmPasswordValidationError {
 /// {@template confirm_password}
 /// Form input for a confirm password input.
 /// {@endtemplate}
-class ConfirmPassword extends FormzInput<String, ConfirmPasswordValidationError> {
+class ConfirmPasswordFZ extends FormzInput<String, ConfirmPasswordValidationError> {
   /// {@macro confirm_password}
-  const ConfirmPassword.pure({this.password = ''}) : super.pure('');
+  const ConfirmPasswordFZ.pure({this.password = ''}) : super.pure('');
 
   /// {@macro confirm_password}
-  const ConfirmPassword.dirty({
+  const ConfirmPasswordFZ.dirty({
     required this.password,
-    String value = '',
+    required String value,
   }) : super.dirty(value);
 
   /// The original password.
