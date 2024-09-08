@@ -1,45 +1,35 @@
+import 'package:dartx/dartx.dart';
 import 'package:formz/formz.dart';
 
-/// Validation errors for the [Name] [FormzInput].
 enum NameValidationError {
-  /// Name can't be empty.
-  empty('First name is required'),
-  /// Name can't exceed 50 characters.
-  exceeds50char('Must not exceed 50 characters'),
-  /// Name can't contain numbers or special characters.
-  containsSpecialChar('Must contain letters only');
+  nameRequired('Name is required'),
+
+  nameLettersOnly('Name must contain letters only');
 
   const NameValidationError(this.msg);
 
-  /// Error message to be displayed.
   final String msg;
 }
 
-/// {@template name}
-/// Form input for name input.
-/// {@endtemplate}
-class Name extends FormzInput<String, NameValidationError> {
-  /// {@macro name}
-  const Name.pure() : super.pure('');
+// Extend FormzInput and provide the input type and error type.
+class NameInput extends FormzInput<String, NameValidationError> {
+  // Call super.pure to represent an unmodified form input.
+  const NameInput.pure([super.value = '']) : super.pure();
 
-  /// {@macro name}
-  const Name.dirty([super.value = '']) : super.dirty();
+  // Call super.dirty to represent a modified form input.
+  const NameInput.dirty([super.value = '']) : super.dirty();
 
-  static final RegExp _nameRegExp = RegExp(r'^[\p{L}]+$', unicode: true);
+  static final RegExp _nameRegExp = RegExp('[A-Za-zء-ي ]');
 
+  // Override validator to handle validating a given input value.
   @override
-  NameValidationError? validator(String? value) {
-    final name = value ?? '';
-    if (name.isEmpty) {
-      return NameValidationError.empty;
+  NameValidationError? validator(String value) {
+    if (value.isBlank) {
+      return NameValidationError.nameRequired;
     }
-    if (name.length > 50) {
-      return NameValidationError.exceeds50char;
+    if (!_nameRegExp.hasMatch(value)) {
+      return NameValidationError.nameLettersOnly;
     }
-    if (!_nameRegExp.hasMatch(name)) {
-      return NameValidationError.containsSpecialChar;
-    }
-
     return null;
   }
 }
