@@ -23,11 +23,11 @@ class NameInput extends FormzInput<String, NameValidationError> {
 
   // Override validator to handle validating a given input value.
   @override
-  NameValidationError? validator(String value) {
-    if (value.isBlank) {
+  NameValidationError? validator(String name) {
+    if (name.isBlank) {
       return NameValidationError.nameRequired;
     }
-    if (!_nameRegExp.hasMatch(value)) {
+    if (!_nameRegExp.hasMatch(name)) {
       return NameValidationError.nameLettersOnly;
     }
     return null;

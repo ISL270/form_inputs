@@ -3,10 +3,10 @@ import 'package:formz/formz.dart';
 /// Validation errors for the [Password] [FormzInput].
 enum PasswordValidationError {
   /// Generic empty error.
-  empty('Passowrd is required'),
+  passwordRequired('Passowrd is required'),
 
   /// Generic invalid error.
-  invalid(
+  passwordInvalid(
     '''Password must be at least 8 characters and contain at least one letter and number''',
   );
 
@@ -21,22 +21,20 @@ enum PasswordValidationError {
 /// {@endtemplate}
 class Password extends FormzInput<String, PasswordValidationError> {
   /// {@macro password}
-  const Password.pure() : super.pure('');
+  const Password.pure([super.value = '']) : super.pure();
 
   /// {@macro password}
   const Password.dirty([super.value = '']) : super.dirty();
 
-  static final _passwordRegExp =
-      RegExp(r'^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$');
+  static final _passwordRegExp = RegExp(r'^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$');
 
   @override
-  PasswordValidationError? validator(String? value) {
-    final password = value ?? '';
+  PasswordValidationError? validator(String password) {
     if (password.isEmpty) {
-      return PasswordValidationError.empty;
+      return PasswordValidationError.passwordRequired;
     }
     if (!_passwordRegExp.hasMatch(password)) {
-      return PasswordValidationError.invalid;
+      return PasswordValidationError.passwordInvalid;
     }
     return null;
   }

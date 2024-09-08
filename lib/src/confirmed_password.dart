@@ -1,42 +1,42 @@
 import 'package:formz/formz.dart';
 
-/// Validation errors for the [ConfirmedPassword] [FormzInput].
-enum ConfirmedPasswordValidationError {
+/// Validation errors for the [confirmPassword] [FormzInput].
+enum ConfirmPasswordValidationError {
   /// Generic empty error.
-  empty('Please re-enter your password for confirmation'),
+  confirmPasswordRequired('Please re-enter your password for confirmation'),
 
   /// Generic invalid error.
   passwordsDoNotMatch('Passwords do not match');
 
-  const ConfirmedPasswordValidationError(this.msg);
+  const ConfirmPasswordValidationError(this.msg);
 
   /// Error message to be displayed.
   final String msg;
 }
 
-/// {@template confirmed_password}
-/// Form input for a confirmed password input.
+/// {@template confirm_password}
+/// Form input for a confirm password input.
 /// {@endtemplate}
-class ConfirmedPassword
-    extends FormzInput<String, ConfirmedPasswordValidationError> {
-  /// {@macro confirmed_password}
-  const ConfirmedPassword.pure({this.password = ''}) : super.pure('');
+class ConfirmPassword extends FormzInput<String, ConfirmPasswordValidationError> {
+  /// {@macro confirm_password}
+  const ConfirmPassword.pure({this.password = ''}) : super.pure('');
 
-  /// {@macro confirmed_password}
-  const ConfirmedPassword.dirty({required this.password, String value = ''})
-      : super.dirty(value);
+  /// {@macro confirm_password}
+  const ConfirmPassword.dirty({
+    required this.password,
+    String value = '',
+  }) : super.dirty(value);
 
   /// The original password.
   final String password;
 
   @override
-  ConfirmedPasswordValidationError? validator(String? value) {
-    final confirmationPassword = value ?? '';
+  ConfirmPasswordValidationError? validator(String confirmationPassword) {
     if (confirmationPassword.isEmpty) {
-      return ConfirmedPasswordValidationError.empty;
+      return ConfirmPasswordValidationError.confirmPasswordRequired;
     }
     if (password != confirmationPassword) {
-      return ConfirmedPasswordValidationError.passwordsDoNotMatch;
+      return ConfirmPasswordValidationError.passwordsDoNotMatch;
     }
     return null;
   }
