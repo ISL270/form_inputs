@@ -15,10 +15,10 @@ enum PhoneNumberValidationError {
 // Extend FormzInput and provide the input type and error type.
 class PhoneNumber extends FormzInput<String, PhoneNumberValidationError> {
   // Call super.pure to represent an unmodified form input.
-  const PhoneNumber.pure([super.value = '']) : super.pure();
+  const PhoneNumber.pure() : super.pure('');
 
   // Call super.dirty to represent a modified form input.
-  const PhoneNumber.dirty([super.value = '']) : super.dirty();
+  const PhoneNumber.dirty(super.value) : super.dirty();
 
   // Override validator to handle validating a given input value.
   @override
