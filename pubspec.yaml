@@ -7,11 +7,9 @@ environment:
   sdk: ">=3.0.0 <4.0.0"
 
 dev_dependencies:
-  mocktail: ^1.0.0
-  test: ^1.19.2
   very_good_analysis: ^6.0.0
   
 dependencies:
   dartx: ^1.2.0
-  formz: ^0.7.0
-  phone_numbers_parser: ^9.0.0
+  formz: ^0.8.0
+  phone_numbers_parser: ^9.0.1
