@@ -12,4 +12,4 @@ dev_dependencies:
 dependencies:
   dartx: ^1.2.0
   formz: ^0.8.0
-  phone_numbers_parser: ^9.0.1
+  phone_numbers_parser: ^9.0.2
