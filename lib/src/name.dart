@@ -19,6 +19,8 @@ class Name extends FormzInput<String, NameValidationError> {
   // Call super.dirty to represent a modified form input.
   const Name.dirty(super.value) : super.dirty();
 
+  factory Name.fromString(String value) => Name.dirty(value);
+
   static final RegExp _nameRegExp = RegExp('[0-9A-Za-zء-ي ]');
 
   // Override validator to handle validating a given input value.
